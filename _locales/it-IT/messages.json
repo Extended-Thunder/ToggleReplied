@@ -6,5 +6,18 @@
     "appDesc": {
         "message": "Permette di marcare i messaggi a cui si è risposto e inoltrati.",
         "description": "A short description of the add-on."
+    },
+
+    "toggleReplied.label":{
+        "message": "As Replied",
+        "description": ""
+    },
+    "toggleForwarded.label":{
+        "message": "As Forwarded",
+        "description": ""
+    },
+    "toggleRedirected.label":{
+        "message": "As Redirected",
+        "description": ""
     }
 }

@@ -1,0 +1,23 @@
+[
+{
+    "namespace":"toggl_bgrndAPI",
+    "functions":
+    [
+        {
+            "name":"OnLoad",
+            "type":"function",
+            "desription":"onlod function",
+            "async":true,
+            "parameters":[]
+        },
+         {
+            "name":"onloadObserver",
+            "type":"function",
+            "desription":"onlod function",
+            "async":true,
+            "parameters":[]
+        }
+
+    ]
+}
+]

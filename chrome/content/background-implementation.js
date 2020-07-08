@@ -1,15 +1,37 @@
-/* Copyright (c) 2017 Jonathan Kamens.
- *
- * This Source Code Form is subject to the terms of the Mozilla Public License,
- * v. 2.0. If a copy of the MPL was not distributed with this file, You can
- * obtain one at http://mozilla.org/MPL/2.0/.
+var { ExtensionCommon } = ChromeUtils.import("resource://gre/modules/ExtensionCommon.jsm");
+var { ExtensionParent } = ChromeUtils.import("resource://gre/modules/ExtensionParent.jsm");
+var extension = ExtensionParent.GlobalManager.getExtension("togglereplied@kamens.us");
+//var {Log4Moz} = ChromeUtils.import("resource:///modules/gloda/log4moz.js");
+var {Services} = ChromeUtils.import("resource://gre/modules/Services.jsm");
+//var {Log4Moz} = ChromeUtils.import("resource:///modules/gloda/log4moz.js");
+var { ExtensionSupport } = ChromeUtils.import("resource:///modules/ExtensionSupport.jsm");
+var  window = Services.wm.getMostRecentWindow("mail:3pane");
+var  document=window.document;
+var  gDBView= window.gDBView;
 
- * Earlier versions of this file were "triple-licensed" under MPL 1.1 / for
- * details.GPL 2.0 / LGPL 2.1. Please see the file "license.txt" or
- * https://github.com/jikamens/ToggleReplied/blob/master/license.txt for
- * details. */
+var toggl_bgrndAPI = class extends ExtensionCommon.ExtensionAPI
+{
+    getAPI(context)
+        {
+               return{
+                toggl_bgrndAPI:
+                            {
+                                onloadObserver:function()
+                                {
+                                    try{Services.obs.addObserver(WindowObserver, "mail-startup-done", false);}
+                                    catch(exception){console.error(exception);}
+								},
+								OnLoad:function()
+								{
+									try{WindowObserver.observe();}
+									catch(exception){console.error(exception)}
+								}
 
-/* Toggle Replied and Forwarded states for Seamonkey and Thunderbird */
+                            }
+                    };
+        }
+};
+
 
 function toggleRepliedClass()
 {
@@ -18,10 +40,15 @@ function toggleRepliedClass()
 	{
 		var stringService = Components.classes["@mozilla.org/intl/stringbundle;1"]
 																	.getService(Components.interfaces.nsIStringBundleService);
-		var strbundle = stringService.createBundle("chrome://toggleReplied/locale/togglereplied.properties");
-		var toggleRepliedLabel = strbundle.GetStringFromName("toggleReplied.label");
-		var toggleForwardedLabel = strbundle.GetStringFromName("toggleForwarded.label");
-		var toggleRedirectedLabel = strbundle.GetStringFromName("toggleRedirected.label");
+        var strbundle = stringService.createBundle("chrome://toggleReplied/locale/togglereplied.properties");
+
+		var toggleRepliedLabel = extension.localeData.localizeMessage("toggleReplied.label");
+		var toggleForwardedLabel = extension.localeData.localizeMessage("toggleForwarded.label");
+    	var toggleRedirectedLabel = extension.localeData.localizeMessage("toggleRedirected.label");
+
+    //var toggleRepliedLabel ="As Replied";
+    //var toggleForwardedLabel="As Forwarded";
+    //var toggleRedirectedLabel="As Redirected";
 
 	  // mailContext-mark is there in TB and SM for the thread pane and message pane
 	  // for Postbox it's messagePaneContext-mark
@@ -87,7 +114,7 @@ function toggleRepliedClass()
 		menuitem.setAttribute("label", label);
 		menuitem.setAttribute("id", id);
 		menuitem.setAttribute("type", "checkbox");
-		menuitem.addEventListener('command', toggleRepliedObj.toggleReplied, false);
+		menuitem.addEventListener('click', toggleRepliedObj.toggleReplied, false);
 
 		return menuitem;
 	}
@@ -98,7 +125,7 @@ function toggleRepliedClass()
 		menuitem.setAttribute("label", label);
 		menuitem.setAttribute("id", id);
 		menuitem.setAttribute("type", "checkbox");
-		menuitem.addEventListener('command', toggleRepliedObj.toggleForwarded, false);
+		menuitem.addEventListener('click', toggleRepliedObj.toggleForwarded, false);
 
 		return menuitem;
 	}
@@ -109,7 +136,7 @@ function toggleRepliedClass()
 		menuitem.setAttribute("label", label);
 		menuitem.setAttribute("id", id);
 		menuitem.setAttribute("type", "checkbox");
-		menuitem.addEventListener('command', toggleRepliedObj.toggleRedirected, false);
+		menuitem.addEventListener('click', toggleRepliedObj.toggleRedirected, false);
 
 		return menuitem;
 	}
@@ -117,7 +144,7 @@ function toggleRepliedClass()
 	// hide or show the menu entry
 	this.toggleRepliedPopup = function()
 	{
-		var dBView = gDBView;
+		var dBView = window.gDBView;
 		var numSelected = dBView.numSelected;
 
 		var isMessageReplied = false;
@@ -155,7 +182,7 @@ function toggleRepliedClass()
 
 	this.toggleReplied = function()
 	{
-		var dBView = gDBView;
+		var dBView = window.gDBView;
 		// use the state of the first selected message to determine
 		// what to set. That's the same TB does for Mark Read.
 		const repliedFlag = 0x02;
@@ -165,11 +192,11 @@ function toggleRepliedClass()
 		try {
 			uris = GetSelectedMessages();
 		} catch(e) {
-			uris = gFolderDisplay.selectedMessageUris;
+			uris = window.gFolderDisplay.selectedMessageUris;
 		}
 		for (var uri of uris)
 		{
-			var hdr = messenger.msgHdrFromURI(uri);
+			var hdr = window.messenger.msgHdrFromURI(uri);
 			dBView.db.MarkReplied(hdr.messageKey, markReplied, null);
 
 			// Propagate the \Answered (replied) flag to the IMAP server
@@ -184,7 +211,7 @@ function toggleRepliedClass()
 
 	this.toggleForwarded = function()
 	{
-		var dBView = gDBView;
+		var dBView = window.gDBView;
 		// use the state of the first selected message to determine
 		// what to set. That's the same TB does for Mark Read.
 		const imapForwardedFlag = 0x0040; 
@@ -194,11 +221,11 @@ function toggleRepliedClass()
 		try {
 			uris = GetSelectedMessages();
 		} catch(e) {
-			uris = gFolderDisplay.selectedMessageUris;
+			uris = window.gFolderDisplay.selectedMessageUris;
 		}
 		for (var uri of uris)
 		{
-			var hdr = messenger.msgHdrFromURI(uri);
+			var hdr = window.messenger.msgHdrFromURI(uri);
 			dBView.db.MarkForwarded(hdr.messageKey, markForwarded, null);
 
 			// Propagate the (nonstandard) $Forwarded flag to the IMAP server
@@ -213,7 +240,7 @@ function toggleRepliedClass()
 
 	this.toggleRedirected = function()
 	{
-		var dBView = gDBView;
+		var dBView = window.gDBView;
 		// use the state of the first selected message to determine
 		// what to set. That's the same TB does for Mark Read.
 		var markRedirected = (/(?:^| )redirected(?: |$)/.test(dBView.hdrForFirstSelectedMessage.getStringProperty("keywords")));
@@ -222,12 +249,12 @@ function toggleRepliedClass()
 		try {
 			uris = GetSelectedMessages();
 		} catch(e) {
-			uris = gFolderDisplay.selectedMessageUris;
+			uris = window.gFolderDisplay.selectedMessageUris;
 		}
 		var toggler = !markRedirected ? "addKeywordsToMessages" : "removeKeywordsFromMessages";
 		for (var uri of uris)
 		{
-			var hdr = messenger.msgHdrFromURI(uri);
+			var hdr = window.messenger.msgHdrFromURI(uri);
 			var msg = Components.classes["@mozilla.org/array;1"]
 			  .createInstance(Components.interfaces.nsIMutableArray);
 			msg.appendElement(hdr, false);
@@ -240,5 +267,11 @@ function toggleRepliedClass()
 		// toggleRepliedObj.toggleRepliedPopup();
 	}
 }
-
 var toggleRepliedObj = new toggleRepliedClass();
+var WindowObserver = {
+    observe: function(aSubject, aTopic, aData) {
+   // window.addEventListener("load", toggleRepliedObj.toggleRepliedInit, false);
+   toggleRepliedObj.toggleRepliedInit();
+    }
+
+}

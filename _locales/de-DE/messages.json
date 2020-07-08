@@ -6,5 +6,18 @@
     "appDesc": {
         "message": "Ermöglicht das Umschalten der Beantwortet- und Weitergeleitet-Markierung von Nachrichten.",
         "description": "A short description of the add-on."
+    },
+
+    "toggleReplied.label":{
+        "message": "As Replied",
+        "description": ""
+    },
+    "toggleForwarded.label":{
+        "message": "As Forwarded",
+        "description": ""
+    },
+    "toggleRedirected.label":{
+        "message": "As Redirected",
+        "description": ""
     }
 }
