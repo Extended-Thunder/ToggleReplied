@@ -20,12 +20,12 @@ var toggl_bgrndAPI = class extends ExtensionCommon.ExtensionAPI
                                 {
                                     try{Services.obs.addObserver(WindowObserver, "mail-startup-done", false);}
                                     catch(exception){console.error(exception);}
-								},
-								OnLoad:function()
-								{
-									try{WindowObserver.observe();}
-									catch(exception){console.error(exception)}
-								}
+				},
+				OnLoad:function()
+				{
+				    try{WindowObserver.observe();}
+				    catch(exception){console.error(exception)}
+				}
 
                             }
                     };
