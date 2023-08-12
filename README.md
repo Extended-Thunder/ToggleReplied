@@ -1,20 +1,20 @@
-ToggleReplied Thunderbird / SeaMonkey add-on
-============================================
+ToggleReplied Thunderbird
+=========================
 
-Add-on for Thunderbird or SeaMonkey which allows the replied,
-forwarded, and redirected flags on existing messages in Thunderbird
-and SeaMonkey.
+Add-on for Thunderbird which allows the replied and forwarded flags on existing
+messages.
 
-This version of this add-on is maintained by Jonathan Kamens. Email
-questions and feedback to [jik@kamens.us](mailto:jik@kamens.us). You
-may also email bug reports there, or [post them on
-Github](https://github.com/jikamens/ToggleReplied/issues).
+This version of this add-on is maintained by Jonathan Kamens with the support
+of Extended Thunder Inc. Email questions and feedback to
+[jik@extended-thunder.org][email]. You may also email bug reports there, or
+[post them on Github][issues].
 
-Thank you to Christian Eyrich, the original author of this add-on.
-This version is a fork of his version whose only changes (thus far)
-are to ensure compatibility with newer Thunderbird and SeaMonkey
-versions.
+Thank you to Christian Eyrich, the original author of this add-on. This version
+has been almost entirely rewritten to support new Thunderbird versions, but his original add-on served as inspiration and pointed us in the right direction for how to leverage Thunderbird's innards to make this possible.
 
-Source code: [https://github.com/jikamens/ToggleReplied](https://github.com/jikamens/ToggleReplied)
+[source code][source] | [addons.thunderbird.net home page][atn]
 
-Home page: [https://addons.mozilla.org/thunderbird/addon/togglereplied-2/](https://addons.mozilla.org/thunderbird/addon/togglereplied-2/)
+[email]: mailto:jik@extended-thunder.org
+[issues]: https://github.com/Extended-Thunder/ToggleReplied/issues
+[source]: https://github.com/Extended-Thunder/ToggleReplied
+[atn]: https://addons.mozilla.org/thunderbird/addon/togglereplied-2/
