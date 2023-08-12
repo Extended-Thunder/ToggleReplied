@@ -39,6 +39,7 @@ async function doToggle(info, tab) {
 }
 
 async function updateMenu(info, tab) {
+  if (!info.selectedMessages) return;
   let selectedMessages = info.selectedMessages.messages;
   if (!selectedMessages.length) return;
   let messageId = selectedMessages[0].id;
