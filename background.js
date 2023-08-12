@@ -1,22 +1,29 @@
-let parentMenu = await messenger.menus.create({
-  contexts: ["message_list"],
-  title: "Mark",
-});
+let menuIds;
 
-let menuIds = {
-  replied: await messenger.menus.create({
+async function init() {
+  let parentMenu = await messenger.menus.create({
     contexts: ["message_list"],
-    parentId: parentMenu,
-    title: messenger.i18n.getMessage("toggleReplied"),
-    type: "checkbox",
-  }),
-  forwarded: await messenger.menus.create({
-    contexts: ["message_list"],
-    parentId: parentMenu,
-    title: messenger.i18n.getMessage("toggleForwarded"),
-    type: "checkbox",
-  }),
-};
+    title: "Mark",
+  });
+
+  menuIds = {
+    replied: await messenger.menus.create({
+      contexts: ["message_list"],
+      parentId: parentMenu,
+      title: messenger.i18n.getMessage("toggleReplied"),
+      type: "checkbox",
+    }),
+    forwarded: await messenger.menus.create({
+      contexts: ["message_list"],
+      parentId: parentMenu,
+      title: messenger.i18n.getMessage("toggleForwarded"),
+      type: "checkbox",
+    }),
+  };
+
+  messenger.menus.onClicked.addListener(doToggle);
+  messenger.menus.onShown.addListener(updateMenu);
+}
 
 async function doToggle(info, tab) {
   let messageIds = info.selectedMessages.messages.map((m) => m.id);
@@ -46,5 +53,4 @@ async function updateMenu(info, tab) {
   messenger.menus.refresh();
 }
 
-messenger.menus.onClicked.addListener(doToggle);
-messenger.menus.onShown.addListener(updateMenu);
+init();
