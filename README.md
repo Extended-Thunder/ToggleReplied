@@ -23,18 +23,28 @@ Beware that if you select more than one message before clicking, the add-on
 looks at only the first of them (where "first" is defined arbitrarily by
 Thunderbird) to figure out whether to mark or unmark messages.
 
+Donate
+------
+
+Development and maintenance of this add-on to keep it free and open-source is
+supported by Extended Thunder Inc. You may make a [recurring][subscribe] or
+[one-time][donate] donation to Extended Thunder. Your donation is
+tax-deductible in the United States as permitted by law.
+
 History
 -------
 
-This version of this add-on is maintained by Jonathan Kamens with the support
-of Extended Thunder Inc. Email questions and feedback to
-[jik@extended-thunder.org][email]. You may also email bug reports there, or
-[post them on Github][issues].
+This version of this add-on is maintained by Jonathan Kamens [[email][email]].
+You may email bug reports to him, or [post them on Github][issues].
 
 Thank you to Christian Eyrich, the original author of this add-on. This version
-has been almost entirely rewritten to support new Thunderbird versions, but his original add-on served as inspiration and pointed us in the right direction for how to leverage Thunderbird's innards to make this possible.
+has been almost entirely rewritten to support new Thunderbird versions, but his
+original add-on served as inspiration and pointed us in the right direction for
+how to leverage Thunderbird's innards to make this possible.
 
-[email]: mailto:jik@extended-thunder.org
+[email]: mailto:jik+ToggleReplied@extended-thunder.org
 [issues]: https://github.com/Extended-Thunder/ToggleReplied/issues
 [source]: https://github.com/Extended-Thunder/ToggleReplied
 [atn]: https://addons.mozilla.org/thunderbird/addon/togglereplied-2/
+[subscribe]: https://liberapay.com/ExtendedThunder
+[donate]: https://paypal.me/ExtendedThunder
