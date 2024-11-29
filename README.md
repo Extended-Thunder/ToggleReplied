@@ -26,10 +26,7 @@ Thunderbird) to figure out whether to mark or unmark messages.
 Donate
 ------
 
-Development and maintenance of this add-on to keep it free and open-source is
-supported by Extended Thunder Inc. You may make a [recurring][subscribe] or
-[one-time][donate] donation to Extended Thunder. Your donation is
-tax-deductible in the United States as permitted by law.
+You can support continued development and maintenance of this add-on via [Liberapay][Liberapay] or [Patreon][Patreon] for recurring donations or [Paypal][Paypal] or [Venmo][Venmo] for one-time donations.
 
 History
 -------
@@ -46,5 +43,7 @@ how to leverage Thunderbird's innards to make this possible.
 [issues]: https://github.com/Extended-Thunder/ToggleReplied/issues
 [source]: https://github.com/Extended-Thunder/ToggleReplied
 [atn]: https://addons.mozilla.org/thunderbird/addon/togglereplied-2/
-[subscribe]: https://liberapay.com/ExtendedThunder
-[donate]: https://paypal.me/ExtendedThunder
+[Liberapay]: https://liberapay.com/jik
+[Patreon]: https://www.patreon.com/c/jikseclecticofferings
+[Paypal]: https://paypal.me/JonathanKamens
+[Venmo]: https://venmo.com/Jonathan-Kamens
