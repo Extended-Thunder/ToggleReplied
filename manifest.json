@@ -9,8 +9,8 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "togglereplied@kamens.us",
-      "strict_min_version": "102.0",
-      "strict_max_version": "115.*"
+      "strict_min_version": "126.0",
+      "strict_max_version": "135.*"
     }
   },
   "permissions": ["menus", "messagesRead"],

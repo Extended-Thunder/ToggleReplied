@@ -1,5 +1,5 @@
-var { ExtensionCommon } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionCommon.jsm",
+var { ExtensionCommon } = ChromeUtils.importESModule(
+  "resource://gre/modules/ExtensionCommon.sys.mjs",
 );
 
 thunderbirdVersion = parseInt(Services.appinfo.version.split(".")[0]);
