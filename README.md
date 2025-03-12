@@ -39,7 +39,7 @@ has been almost entirely rewritten to support new Thunderbird versions, but his
 original add-on served as inspiration and pointed us in the right direction for
 how to leverage Thunderbird's innards to make this possible.
 
-[email]: mailto:jik+ToggleReplied@extended-thunder.org
+[email]: mailto:jik+ToggleReplied@kamens.us
 [issues]: https://github.com/Extended-Thunder/ToggleReplied/issues
 [source]: https://github.com/Extended-Thunder/ToggleReplied
 [atn]: https://addons.mozilla.org/thunderbird/addon/togglereplied-2/
