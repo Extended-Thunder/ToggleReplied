@@ -39,6 +39,11 @@ has been almost entirely rewritten to support new Thunderbird versions, but his
 original add-on served as inspiration and pointed us in the right direction for
 how to leverage Thunderbird's innards to make this possible.
 
+Generative AI policy
+--------------------
+
+This project does not solicit or accept work produced with substantive assistance from generative AI. Only [hand-crafted code][hcc] is welcome here.
+
 [email]: mailto:jik+ToggleReplied@kamens.us
 [issues]: https://github.com/Extended-Thunder/ToggleReplied/issues
 [source]: https://github.com/Extended-Thunder/ToggleReplied
@@ -47,3 +52,4 @@ how to leverage Thunderbird's innards to make this possible.
 [Patreon]: https://www.patreon.com/c/jikseclecticofferings
 [Paypal]: https://paypal.me/JonathanKamens
 [Venmo]: https://venmo.com/Jonathan-Kamens
+[hcc]: https://handcraftedcode.org
